@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Equipe | Innovate Solutions</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis Globais */
+        :root {
+            --primary-blue: #1455d3;
+            --blue-hover: #1044a8;
+            --dark-navy: #151a24;
+            --slate-blue: #4a5d6e;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #f7f8fa;
+            --white: #ffffff;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Cabeçalho --- */
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        /* Linha indicando a página ativa (Equipe) */
+        nav a.active {
+            color: #111;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #111;
+        }
+
+        /* --- Hero Section (Equipe - Fundo Gradiente) --- */
+        .hero-equipe {
+            /* Transição suave do cinza azulado para o cinza claro do fundo da página */
+            background: linear-gradient(to bottom, var(--slate-blue) 0%, #a4b3bb 60%, var(--bg-light) 100%);
+            padding: 120px 0 60px;
+            text-align: center;
+            color: var(--white);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-badge-pill {
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            margin-bottom: 30px;
+        }
+
+        .hero-equipe h1 {
+            font-family: var(--font-body);
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            max-width: 800px;
+        }
+
+        .hero-equipe p.desc {
+            font-size: 18px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Grid da Equipe --- */
+        .team-section {
+            background-color: var(--bg-light);
+            padding: 40px 0 100px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .team-card {
+            background-color: var(--white);
+            padding: 50px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        }
+
+        .team-photo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            background-color: #e5e7eb;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .team-card h3 {
+            font-family: var(--font-body);
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 5px;
+        }
+
+        .team-card .role {
+            font-size: 11px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .team-card p {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* --- Metodologia e Sinergia --- */
+        .methodology-wrapper {
+            padding: 0 40px 100px;
+            background-color: var(--bg-light);
+        }
+
+        .methodology-box-blue {
+            background-color: #1c324a; /* Azul escuro inspirado no protótipo */
+            border-radius: 12px;
+            padding: 80px 40px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .methodology-box-blue h2 {
+            font-family: var(--font-body);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .methodology-box-blue p.sub {
+            font-size: 15px;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 35px 40px;
+            min-width: 240px;
+        }
+
+        .stat-card h4 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-card span {
+            font-size: 13px;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        /* --- Rodapé --- */
+        footer {
+            background-color: var(--white);
+            padding: 80px 0 40px;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 25px;
+            max-width: 350px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-box {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .social-box:hover {
+            background-color: var(--bg-light);
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: #9ca3af;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid #eaeaea;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .team-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-equipe h1 { font-size: 42px; }
+            nav ul { display: none; }
+            .methodology-wrapper { padding: 0 20px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imagems/image_332ae0.png.png" alt="Logo Innovate Solutions" style="width: 35px; height: auto; margin-right: 10px;">
+                INNOVATE SOLUTIONS
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="waitless.html">WaitLess</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="#" class="active">Equipe</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-equipe">
+        <div class="container">
+            <span class="hero-badge-pill">Nossos Especialistas</span>
+            <h1>A excelência por trás do código.</h1>
+            <p class="desc">Uma equipe sênior, meticulosa e multidisciplinar que não aceita nada menos que o extraordinário.</p>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="team-grid">
+                
+                <div class="team-card">
+                    <img src="imagems/Hc.png" alt="Hewerson Cássio" class="team-photo">
+                    <h3>Hewerson Cássio</h3>
+                    <span class="role">Product Owner</span>
+                    <p>Gerencia o roadmap estratégico e garante o alinhamento crítico entre as métricas de negócio e o produto final.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="imagems/jP.png" alt="João Paulo" class="team-photo">
+                    <h3>João Paulo</h3>
+                    <span class="role">Developer / QA</span>
+                    <p>Engenharia de precisão com olhar crítico, atuando na ponte fundamental entre desenvolvimento e resiliência de software.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="imagems/jw.png" alt="Jonathan Willian" class="team-photo">
+                    <h3>Jonathan Willian</h3>
+                    <span class="role">Software Engineer</span>
+                    <p>Especialista em desenvolvimento de aplicações web modernas e arquitetura de software escalável de alto desempenho.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="imagems/Jg.png" alt="Jailton Gomes" class="team-photo">
+                    <h3>Jailton Gomes</h3>
+                    <span class="role">QA / Testes</span>
+                    <p>Especialista em garantia da qualidade, garantindo rigor e zero tolerância a falhas nos processos de entrega.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="imagems/lt.png" alt="Luis Otávio" class="team-photo">
+                    <h3>Luis Otávio</h3>
+                    <span class="role">Designer / UX</span>
+                    <p>Cria interfaces sofisticadas e experiências de usuário premium, focadas em elegância, clareza e conversão.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="methodology-wrapper">
+        <div class="container">
+            <div class="methodology-box-blue">
+                <h2>Metodologia e Sinergia</h2>
+                <p class="sub">A força da Innovate Solutions não está apenas no talento individual, mas no rigor de nossos processos ágeis e na colaboração brutalmente transparente.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>6</h4>
+                        <span>Especialistas Sêniores</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>100%</h4>
+                        <span>Foco em Qualidade</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Ágil</h4>
+                        <span>Gestão Scrum / Kanban</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div>
+                    <div class="footer-logo">
+                        <img src="imagems/image_332ae0.png.png" alt="Logo Innovate Solutions" style="width: 24px; height: auto; margin-right: 10px;">
+                        WaitLess
+                    </div>
+                    <p class="footer-desc">Soluções digitais acadêmicas e sofisticadas para transformar e otimizar a arquitetura da sua empresa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="#" class="social-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" class="social-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Índice</h4>
+                    <ul>
+                        <li><a href="index.html">Página Inicial</a></li>
+                        <li><a href="waitless.html">A Plataforma WaitLess</a></li>
+                        <li><a href="sobre.html">Sobre a Instituição</a></li>
+                        <li><a href="#">Nossos Especialistas</a></li>
+                        <li><a href="contato.html">Contato Editorial</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Correspondência</h4>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span>inquiries@innovatesolutions.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span>+55 (11) 98765-4321</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Avenida Faria Lima, 3000<br>São Paulo, SP - Brasil</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Innovate Solutions. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Serviço</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

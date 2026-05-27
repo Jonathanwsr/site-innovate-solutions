@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaitLess | Innovate Solutions</title>
+    
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis Globais */
+        :root {
+            --primary-blue: #1455d3;
+            --blue-hover: #1044a8;
+            --dark-navy: #151a24;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #f7f8fa;
+            --white: #ffffff;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Cabeçalho --- */
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            color: #4CAF50;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        /* Linha indicando a página ativa (WaitLess) */
+        nav a.active {
+            color: #111;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #111;
+        }
+
+        /* --- Hero Section (Fundo Escuro) --- */
+        .hero-waitless {
+            background-color: var(--dark-navy);
+            color: var(--white);
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            /* AUMENTO DA IMAGEM 1: Dando 1.2fr de espaço para a coluna da direita */
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px; /* Reduzido o espaço para a imagem crescer */
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: #d1d5db;
+        }
+
+        .hero-waitless h1 {
+            font-family: var(--font-heading);
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-waitless p.desc {
+            font-size: 18px;
+            color: #9ca3af;
+            margin-bottom: 40px;
+            max-width: 90%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-white {
+            background-color: var(--white);
+            color: var(--dark-navy);
+        }
+
+        .btn-white:hover {
+            background-color: #f3f4f6;
+        }
+
+        .btn-outline-light {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline-light:hover {
+            border-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-checkmarks {
+            display: flex;
+            gap: 25px;
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .hero-checkmarks div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Mockup tela flutuante */
+        .hero-image-wrapper img {
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            /* AUMENTO DA IMAGEM 2: Escalonando a imagem para preencher melhor */
+            width: 100%;
+            transform: scale(1.05);
+        }
+
+        /* Linha e texto "Empresas que confiam" */
+        .trusted-by {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #6b7280;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- Introdução (Texto Centrado) --- */
+        .intro-section {
+            padding: 100px 0;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-content h2 {
+            font-family: var(--font-heading);
+            font-size: 40px;
+            color: #111;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .intro-content p {
+            color: var(--text-light);
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        /* --- Setores que Transformamos --- */
+        .sectors-section {
+            padding: 80px 0;
+        }
+
+        .section-header-center {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header-center h2 {
+            font-family: var(--font-heading);
+            font-size: 40px;
+            color: #111;
+            margin-bottom: 15px;
+        }
+
+        .section-header-center p {
+            color: var(--text-light);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .sector-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .sector-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .sector-image {
+            /* AUMENTO DA IMAGEM 3: Alterado de 200px para 250px */
+            height: 250px; 
+            width: 100%;
+            background-color: #e5e7eb;
+            position: relative;
+        }
+
+        .sector-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sector-icon {
+            position: absolute;
+            bottom: -20px;
+            left: 25px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(20, 85, 211, 0.3);
+        }
+
+        .sector-content {
+            padding: 40px 25px 30px;
+        }
+
+        .sector-content h3 {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .sector-content p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- Recursos Essenciais --- */
+        .features-detailed {
+            padding: 80px 0 120px;
+            background-color: var(--bg-light);
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* AUMENTO DA IMAGEM 4: Diminuí o gap de 80px para 40px para a imagem ter mais largura */
+            gap: 40px; 
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        .icon-box-light {
+            width: 48px;
+            height: 48px;
+            background-color: #f3f4f6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+        }
+
+        .feature-text h3 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            color: #111;
+            margin-bottom: 15px;
+        }
+
+        .feature-text p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        .feature-img-placeholder {
+            background-color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            /* AUMENTO DA IMAGEM 5: Diminuí o padding de 20px para 8px para a imagem "estourar" mais dentro da caixa */
+            padding: 8px; 
+        }
+
+        .feature-img-placeholder img {
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        /* --- Rodapé --- */
+        footer {
+            background-color: var(--white);
+            padding: 80px 0 40px;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 25px;
+            max-width: 350px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-box {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .social-box:hover {
+            background-color: var(--bg-light);
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: #9ca3af;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid #eaeaea;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero-grid, .sectors-grid, .feature-row, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-waitless h1 { font-size: 42px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                INNOVATE SOLUTIONS
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" class="active">WaitLess</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Equipe</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-waitless">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <!-- Textos à esquerda -->
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span>★</span> PLATAFORMA COMPLETA
+                    </div>
+                    <h1>Encontre serviços em só lugar</h1>
+                    <p class="desc">
+                        A plataforma completa de gestão de serviços e agendamentos que conecta seu negócio a uma nova era de eficiência. O fim das filas de espera começa aqui.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-white">Descubra como funciona &rarr;</a>
+                        <a href="#" class="btn btn-outline-light">Agendar demonstração</a>
+                    </div>
+
+                    <div class="hero-checkmarks">
+                        <div>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline></svg>
+                            Sem complicação
+                        </div>
+                        <div>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline></svg>
+                            Setup rápido
+                        </div>
+                        <div>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline></svg>
+                            Suporte dedicado
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mockup flutuante à direita -->
+                <div class="hero-image-wrapper">
+                    <!-- COLOQUE AQUI A IMAGEM DA TELA DO SISTEMA WAITLESS -->
+                    <img src="imagems/Dashboard Preview.png" alt="Interface WaitLess">
+                </div>
+            </div>
+
+            <div class="trusted-by">
+                Empresas que já confiam na nossa plataforma
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRODUÇÃO TEXTUAL -->
+    <section class="intro-section">
+        <div class="container intro-content">
+            <h2>Uma revolução na gestão de serviços</h2>
+            <p>O mercado atual de serviços parou no tempo. Hoje, a jornada do cliente é um labirinto fragmentado: você pesquisa em um site, envia mensagens por outro aplicativo, aguarda horas por uma confirmação manual e, frequentemente, ainda perde tempo em salas de espera imprevisíveis. Para os estabelecimentos, essa mesma desorganização gera ociosidade, falhas de comunicação e perda de faturamento.</p>
+            <p>O WaitLess nasceu para unificar e modernizar esse ecossistema. Nós construímos o primeiro marketplace definitivo de serviços, desenhado para eliminar a ineficiência. Em uma única plataforma, conectamos a demanda do cliente aos melhores estabelecimentos da região. Do agendamento online inteligente e pagamentos integrados ao acompanhamento de filas virtuais em tempo real. Não somos apenas um sistema de gestão; somos o fim da espera e da burocracia na contratação de serviços.</p>
+        </div>
+    </section>
+
+    <!-- SETORES GRID -->
+    <section class="sectors-section">
+        <div class="container">
+            <div class="section-header-center">
+                <h2>Setores que Transformamos</h2>
+                <p>O WaitLess foi arquitetado para adaptar-se à dinâmica específica de múltiplos mercados, incluindo autônomos.</p>
+            </div>
+
+            <div class="sectors-grid">
+                
+                <!-- Card 1 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <!-- IMAGEM AQUI -->
+                        <img src="imagems/AB6AXuBR0z2r5yfBciStqdAMnjUaOPrWMnee3b-iHoxMmDTgrqg44df8ag9o5nyXhLZrvPIUgbBhR-GwXnTV7b5HmJ-WKJjv7z4nIzX3vjHhA_mvFi8Flr9GCTALWDY9f8ozp4nMkK3K8f_TE4Gn-ugQ-sFtOIo8oopZhYFNQGnLOp8bSG-RhM1yASW-EWDM4x-aNE_F638mnJ7zWGx.png" alt="Saúde & Clínicas">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Saúde & Clínicas</h3>
+                        <p>Agende consultas médicas, exames e procedimentos em clínicas e hospitais de forma rápida e eficiente.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <!-- IMAGEM AQUI -->
+                        <img src="imagems/salao.png" alt="Beleza & Estética">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Beleza & Estética</h3>
+                        <p>Marque horários em salões de beleza, barbearias e clínicas de estética com facilidade.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        <!-- IMAGEM AQUI -->
+                        <img src="imagems/hospendagem.png" alt="Hospedagem">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Hospedagem</h3>
+                        <p>Reserve quartos em hotéis, pousadas e acomodações com sistema de check-in otimizado.</p>
+                    </div>
+                </div>
+
+               <!-- Card 4 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                      
+                        <img src="imagems/turismo02.png" alt="Turismo">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Turismo</h3>
+                        <p>Planeje passeios, tours e experiências turísticas com agendamento simplificado e previsível.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                       
+                        <img src="imagems/automotivo.png" alt="Automotivo">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Automotivo</h3>
+                        <p>Agende manutenções, revisões e serviços automotivos em oficinas sem precisar ligar.</p>
+                    </div>
+                </div>
+
+              <!-- Card 6 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        
+                        <img src="imagems/montagem.png" alt="Montagem de Móveis">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Montagem de Móveis</h3>
+                        <p>Agende profissionais para montagem e instalação de móveis com segurança e eficiência.</p>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                       
+                        <img src="imagems/jardinagem.png" alt="Jardinagem & Paisagismo">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> <!-- Ícone genérico placeholder -->
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Jardinagem & Paisagismo</h3>
+                        <p>Reserve serviços de jardinagem, paisagismo e manutenção de jardins.</p>
+                    </div>
+                </div>
+
+              <!-- Card 8 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                        
+                        <img src="imagems/predeiro.png" alt="Pedreiros & Construção">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Pedreiros & Construção</h3>
+                        <p>Contrate pedreiros e profissionais de construção para seus projetos.</p>
+                    </div>
+                </div>
+
+              <!-- Card 9 -->
+                <div class="sector-card">
+                    <div class="sector-image">
+                    
+                        <img src="imagems/piscineiro.png" alt="Limpeza de piscinas">
+                        <div class="sector-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="sector-content">
+                        <h3>Limpeza de piscinas</h3>
+                        <p>Especialistas em limpeza de piscinas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="features-detailed">
+        <div class="container">
+            <div class="section-header-center">
+                <h2>Recursos Essenciais</h2>
+                <p>Tecnologia desenvolvida para oferecer controle absoluto sobre a sua operação diária.</p>
+            </div>
+
+           
+            <div class="feature-row">
+                <div class="feature-text">
+                    <div class="icon-box-light">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+                    <h3>Agendamento & Fila Virtual</h3>
+                    <p>Um sistema inteligente que permite reservas 24/7. Os clientes acompanham sua posição exata na fila e o tempo estimado de espera diretamente do smartphone, reduzindo aglomerações e frustrações físicas.</p>
+                </div>
+                <div class="feature-img-placeholder">
+                   
+                    <img src="imagems/Digital calendar interface showing appointments.png" alt="Calendário e Agendamentos">
+                </div>
+            </div>
+
+            <!-- Recurso 2 (Invertido) -->
+            <div class="feature-row" style="margin-top: 120px;">
+                <div class="feature-img-placeholder">
+                    
+                    <img src="imagems/Person using contactless payment on a terminal.png" alt="Pagamentos Integrados">
+                </div>
+                <div class="feature-text">
+                    <div class="icon-box-light">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    </div>
+                    <h3>Pagamentos Integrados</h3>
+                    <p>Proteja sua receita. Nossa plataforma permite a cobrança de depósitos antecipados para confirmar agendamentos, reduzindo substancialmente a taxa de abstenções e garantindo previsibilidade de caixa.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div>
+                    <div class="footer-logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#151a24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect></svg>
+                        WaitLess
+                    </div>
+                    <p class="footer-desc">Soluções digitais acadêmicas e sofisticadas para transformar e otimizar a arquitetura da sua empresa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                        <a href="#" class="social-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" class="social-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Índice</h4>
+                    <ul>
+                        <li><a href="#">Página Inicial</a></li>
+                        <li><a href="#">A Plataforma WaitLess</a></li>
+                        <li><a href="#">Sobre a Instituição</a></li>
+                        <li><a href="#">Nossos Especialistas</a></li>
+                        <li><a href="#">Contato Editorial</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3 -->
+                <div class="footer-col">
+                    <h4>Correspondência</h4>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span>inquiries@innovatesolutions.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span>+55 (11) 98765-4321</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>Avenida Faria Lima, 3000<br>São Paulo, SP - Brasil</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Innovate Solutions. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Serviço</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+</body>
+</html>
